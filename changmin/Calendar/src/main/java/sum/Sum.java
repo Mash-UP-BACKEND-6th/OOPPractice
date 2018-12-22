@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Created by changmin on 2018. 12. 15..
+ * 이거 왜 하라 그랬는지 모르겠다...
  */
 public class Sum {
 

@@ -9,8 +9,20 @@ public class MaxDayFinder {
     public static int[] maxDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     public static int[] leapYearMaxDays = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    public boolean isLeap(int year) {
-        return year % 400 == 0 && year % 10 == 0 && year % 4 == 0 || !(year % 4 == 0 && year % 10 == 0) || year % 4 == 0;
+    public static boolean isLeap(int year) {
+        if(year % 4 == 0) {
+            if(year % 100 == 0) {
+                if(year % 400 == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
     public int getMaxDay(int year, int month) {

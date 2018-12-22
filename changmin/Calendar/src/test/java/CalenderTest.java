@@ -8,7 +8,10 @@ import org.junit.*;
 public class CalenderTest {
     @Test
     public void main() {
-        Calendar calendar = new Calendar();
-        calendar.print(31);
+        for(int i = 1; i <= 12; ++i) {
+            System.out.println(i);
+            Calendar calendar = new Calendar();
+            calendar.print(2018, i);
+        }
     }
 }

@@ -19,8 +19,8 @@ public class Date {
     }
 
     int day1 = 0;
-    public void setDay1(String day1) {
-        this.day1 = map.get(day1);
+    public void setDay1(int day1) {
+        this.day1 = day1;
     }
 
     public void print(int endDay) {
@@ -31,11 +31,11 @@ public class Date {
         }
         for(int day = 1; day <= endDay; ++day) {
             stb.append(String.format("%3d", day));
-
+            pos += 1;
             if(pos % 7 == 0) {
                 stb.append("\n");
             }
-            pos += 1;
+
         }
         System.out.println(stb);
     }
