@@ -8,6 +8,7 @@ import org.junit.*;
 public class CalenderTest {
     @Test
     public void main() {
-        Calendar.print();
+        Calendar calendar = new Calendar();
+        calendar.print(31);
     }
 }

@@ -5,12 +5,24 @@ package calendar;
  *
  */
 public class Calendar {
-    private Calendar() {
-        //Singleton
+    private static final int WIDTH = 22;
+    private Date date;
+    private DayOfTheWeek dayOfTheWeek;
+    private Liner liner;
+
+    public Calendar() {
+        date = new Date();
+        dayOfTheWeek = new DayOfTheWeek();
+        liner = new Liner();
     }
-    public static void print() {
-        DayOfTheWeek.print();
-        Liner.print(22);
-        Date.print(28);
+
+    public void print(int days) {
+        dayOfTheWeek.print();
+        liner.print(WIDTH);
+        date.print(days);
+    }
+
+    public void setDay1(String day1) {
+        date.setDay1(day1);
     }
 }
