@@ -1,4 +1,4 @@
-package first.version;
+package firstVersion;
 public class Main {
     public static void main(String[] args) {
         /// 1. 년도 입력시 해당 년도 모든 달 출력

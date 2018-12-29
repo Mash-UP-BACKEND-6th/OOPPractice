@@ -1,14 +1,9 @@
-package first.version;
+package firstVersion;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Caldar_one extends Calendar {
     ArrayList<String> cal = new ArrayList<>();
-    int[] maxDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     String year;
     int space;
     /// 1.
@@ -28,7 +23,7 @@ public class Caldar_one extends Calendar {
             cal.add("  ");
         }
 
-        for (int maxDay : maxDays) {
+        for (int maxDay : getMaxDays()) {
 
             for (int i = 1; i <= maxDay; i++) {
                 cal.add(String.valueOf(i));

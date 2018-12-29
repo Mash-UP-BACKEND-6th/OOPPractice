@@ -1,10 +1,9 @@
-package first.version;
+package firstVersion;
 
 import java.util.ArrayList;
 
 public class Caldar_two extends Calendar {
     ArrayList<String> cal = new ArrayList<>();
-    int[] maxDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     String year;
     String month;
     int space;
@@ -21,7 +20,7 @@ public class Caldar_two extends Calendar {
             cal.add("  ");
         }
 
-        for (int i = 1; i <= maxDays[Integer.parseInt(month) - 1]; i++) {
+        for (int i = 1; i <= (getMaxDays())[Integer.parseInt(month) - 1]; i++) {
             cal.add(String.valueOf(i));
         }
 
