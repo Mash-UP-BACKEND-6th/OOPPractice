@@ -1,4 +1,4 @@
-package first.version;
+package firstVersion;
 
 public class Schedule {
 

@@ -1,4 +1,4 @@
-package first.version;
+package firstVersion;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

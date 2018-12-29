@@ -1,4 +1,4 @@
-package first.version;
+package firstVersion;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -8,9 +8,23 @@ import java.util.Date;
 
 public class Calendar {
     ArrayList<String> cal = new ArrayList<>();
-    int[] maxDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     String year;
     int space;
+    int[] maxDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int[] leapMaxDays = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    public int[] getMaxDays() {
+        boolean isLeap= false;
+        // String year을 매개변수로 받으면 판단해서 넘겨주는
+
+        if(isLeap){
+            return leapMaxDays;
+        }else{
+
+        }
+
+        return maxDays;
+    } // 윤년 계산 적용시에 쓸것!
 
     public static int getSpace(String printDate) {
         // 첫번째로 출력될 날짜의 요일을 구하고 (ex. 수 )
@@ -52,5 +66,12 @@ public class Calendar {
         return index;
     }
 
+    public void makeCal() {
+
+    }
+
+    public void printCal() {
+
+    }
 
 }
