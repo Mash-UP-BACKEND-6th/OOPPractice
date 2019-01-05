@@ -17,7 +17,7 @@ public class Gamer implements Player{
         Card card = deck.draw();
         cards.add(card);
         score += card.getScore();
-        return deck.draw();
+        return card;
     }
 
     @Override

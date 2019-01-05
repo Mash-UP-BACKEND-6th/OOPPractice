@@ -6,22 +6,24 @@ import static org.mockito.Mockito.when;
 
 public class GamerTest {
     @Test
-
     public void testDraw() {
         Deck deck = new Deck();
         Player gamer = new Gamer(deck);
         Card card = gamer.draw();
         Assert.assertNotNull(card);
     }
+
     @Test
     public void testIsEnd() {
         Deck deck = new Deck();
         Player gamer = new Gamer(deck);
         Assert.assertFalse(gamer.isEnd());
+
         int maxCount = deck.countCard();
         for(int i = 0; i < maxCount; ++i) {
             gamer.draw();
         }
+
         Assert.assertTrue(gamer.isEnd());
     }
 
