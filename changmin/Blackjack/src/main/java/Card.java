@@ -20,4 +20,13 @@ public class Card {
     public int getScore() {
         return score;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "suite=" + suite +
+                ", value='" + value + '\'' +
+                ", score=" + score +
+                '}';
+    }
 }

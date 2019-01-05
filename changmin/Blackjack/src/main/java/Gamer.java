@@ -5,6 +5,7 @@ public class Gamer implements Player{
     private Deck deck;
     private int score;
     private List<Card> cards;
+
     public Gamer(Deck deck) {
         this.deck = deck;
         cards = new ArrayList<>();
