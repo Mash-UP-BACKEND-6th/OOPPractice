@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Deck {
     private List<Card> cards;
-    static Map<Integer, String> table = new HashMap<>();
 
     public Deck() {
        shuffle();

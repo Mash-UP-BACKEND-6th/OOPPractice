@@ -8,6 +8,17 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class DealerTest {
+    static Set<String> valueSet = new HashSet<>();
+    static {
+        for (int i = 2; i <= 10; ++i) {
+            valueSet.add(String.valueOf(i));
+        }
+
+        for (String value : new String[]{"A", "J", "Q", "K"}) {
+            valueSet.add(value);
+        }
+    }
+
     @Test
     public void testDraw() {
         Deck deck = new Deck();
@@ -41,17 +52,6 @@ public class DealerTest {
             }
         }
         return false;
-    }
-
-    static Set<String> valueSet = new HashSet<>();
-    static {
-        for(int i = 2; i <= 10; ++i) {
-            valueSet.add(String.valueOf(i));
-        }
-
-        for(String value : new String[]{"A", "J", "Q", "K"}) {
-           valueSet.add(value);
-        }
     }
 
     public boolean isValidCard(Card card) {
