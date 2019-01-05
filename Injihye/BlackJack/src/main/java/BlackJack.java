@@ -48,7 +48,7 @@ public class BlackJack
                 break;
 
 
-        }// end first switch
+        }
 
         switch(cardNum){
 
@@ -117,33 +117,24 @@ public class BlackJack
                 score = 10;
                 break;
 
+        }
 
-
-        }//end second switch
-
-    }//end cardMarked
+    }
 
     public void setPoint()
     {
-
         totalScore = totalScore + score;
-
-    }//end getPoint
+    }
 
     public int getPoint()
     {
-
         return totalScore;
     }
 
     public void display() {
-
         System.out.println(num + " of " + mark);
-
     }
 
-
-
-} // end class
+}
 
 
