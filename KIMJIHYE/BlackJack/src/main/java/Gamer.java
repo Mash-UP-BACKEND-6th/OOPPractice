@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Gamer extends Thread implements Person {
     int valueSum = 0;
     Scanner scanner = new Scanner(System.in);
-
+    boolean isEnd = false;
     ArrayList<Card> hand = new ArrayList<>();
 
     void selectCard(){
@@ -41,23 +41,21 @@ public class Gamer extends Thread implements Person {
             selectCard();
 
             synchronized (this){
-                while(true){
+                while(valueSum<=21){
                     System.out.println("||||| 카드를 더 뽑으시겠습니까? y or n");
                     String continuE = scanner.next();
                     if(continuE.equals("n")){
-                        notify();
+                        break;
                     }else{
                         System.out.println("||||| 한장 더 뽑겠습니다.");
                         selectCard();
                     }
+                    notify();
                 }
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("***게이머가 종료됩니다.");
         }
-
-
-
     }
 
 }
