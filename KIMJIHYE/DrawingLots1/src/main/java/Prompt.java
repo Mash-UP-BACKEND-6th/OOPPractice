@@ -1,40 +1,29 @@
 import java.util.Scanner;
 
 class Prompt {
-    Lot lot;
-    private boolean firstShuffle=false; // 최초 섞기
-    boolean isAgain=false;
+    boolean isReset=false;
     Scanner scanner = new Scanner(System.in);
 
-    Prompt(Lot lot){
-        this.lot = lot;
-    }
-
-    void initPrompt(){
+    Lot initPrompt(){
         System.out.println("+-------------제비뽑기");
         System.out.print("| 인원 수 : ");
-        lot.peopleN = scanner.nextInt();
+        int lotsNum = scanner.nextInt();
 
         System.out.print("| 꽝 개수 : ");
-        lot.losingN = scanner.nextInt();
+        int losingNum = scanner.nextInt();
         System.out.println("+---------------------");
+
+        Lot lot = new Lot(lotsNum, losingNum);
+
         System.out.println();
-        isAgain = false;
+        isReset = false; // 초기설정으로 돌아가기로 온경우 true상태이므로 다시 초기화
         scanner.nextLine(); // 뒤에서 엔터입력 받기위해 비워주기
+
+        return lot;
     }
 
     boolean shufflePrompt(){
-        if( firstShuffle == false) {
-            System.out.println("제비가 준비되었습니다");
-            showLots();
-            System.out.println("Enter를 눌러 제비를 섞어주세요  :)  ");
-            scanner.nextLine();
-            firstShuffle=true;
-            return true;
-        }else {
-            showLots();
-            System.out.print("제비를 다시 섞을까요(y or n) ? (초기설정으로 돌아가기 q) ");
-        }
+        System.out.print("제비를 다시 섞을까요(y or n) ? (초기설정으로 돌아가기 q) ");
 
         switch(scanner.next()){
             case "Y":
@@ -44,7 +33,7 @@ class Prompt {
             case "n":
                 return false;
             case "q":
-                isAgain = true;
+                isReset = true;
                 return false;
             default:
                 System.out.println("잘못된 입력!");
@@ -52,45 +41,63 @@ class Prompt {
         }
     }
 
-    void selectPrompt(){
+    void selectPrompt(Lot lot){
         System.out.print("제비를 선택하세요 : ");
-        String selectedLot = scanner.next();
+        Integer selectedLot =Integer.parseInt(scanner.next());
         System.out.println("==> 결과 : "+ lot.getResult(selectedLot));
-        System.out.println("+------------------------+");
-        System.out.println("| 1. 전체 결과보기       |");
-        System.out.println("| 2. 다시하기            |");
-        System.out.println("| 3. 종료                |");
-        System.out.println("+------------------------+");
-        switch(scanner.nextInt()){
-            case 1:
-                showAllPrompt();
-                break;
-            case 2:
-                isAgain=true;
-                break;
-            case 3:
-
-                break;
-        }
+        scanner.nextLine(); // 아래에서 Enter입력 받기 위해 비워주기
+        System.out.println("+--------------------------------------------------+");
+        System.out.println("| Enter를 누르면 전체 결과가 출력됩니다.           |");
+        System.out.println("+--------------------------------------------------+");
+        scanner.nextLine();
+        showLots(lot,true);
     }
 
-    void showAllPrompt(){
+    void showLots(Lot lot, boolean answer){
 
-    }
-
-    void showLots(){
-        for(int i=0;i<lot.peopleN;i++){
+        for(int i=0;i<lot.lotsNum;i++){
             System.out.print("+-----+    ");
         }
         System.out.println();
-        for(int i=0;i<lot.peopleN;i++){
-            System.out.print("|  "+(i+1)+"  |    ");
+
+        // 제비 번호 출력
+        for(int i=1;i<=lot.lotsNum;i++){
+                System.out.print("|  "+i+"  |    ");
         }
+
+        // 꽝, 통과 출력
         System.out.println();
-        for(int i=0;i<lot.peopleN;i++){
+        for(int i=1;i<=lot.lotsNum;i++){
+            if(answer){
+                System.out.print("|"+lot.getResult(i)+"|    ");
+            }else{
+                System.out.print("|     |    ");
+            }
+        }
+
+        System.out.println();
+        for(int i=0;i<lot.lotsNum;i++){
             System.out.print("+-----+    ");
         }
         System.out.println();
+    }
+
+    boolean exitPrompt(){
+        while(true){
+            System.out.println("계속하시겠습니까? (계속하려면 y, 종료하려면 q)");
+            switch(scanner.next()) {
+                case "y":
+                case "Y":
+                    return true;
+                case "q":
+                case "Q":
+                    System.out.println("제비뽑기를 종료합니다.");
+                    return false;
+                default:
+                    System.out.println("잘못된 입력!");
+            }
+        }
+
     }
 
 }
