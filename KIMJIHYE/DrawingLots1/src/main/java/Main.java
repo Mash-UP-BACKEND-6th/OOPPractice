@@ -1,5 +1,3 @@
-package firstVersion;
-
 public class Main {
     public static void main(String[] args) {
         Lot lot = new Lot();

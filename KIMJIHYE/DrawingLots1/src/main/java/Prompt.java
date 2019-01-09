@@ -1,13 +1,12 @@
-package firstVersion;
 import java.util.Scanner;
 
-public class Prompt {
+class Prompt {
     Lot lot;
-    boolean firstShuffle=false; // 최초 섞기
+    private boolean firstShuffle=false; // 최초 섞기
     boolean isAgain=false;
     Scanner scanner = new Scanner(System.in);
 
-    public Prompt(Lot lot){
+    Prompt(Lot lot){
         this.lot = lot;
     }
 
