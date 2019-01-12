@@ -6,7 +6,7 @@ public class Prompt {
     Liner liner = new Liner();
     Scanner sc = new Scanner(System.in);
     Calendar calendar = new Calendar();
-    Map<String, List> scheduleMap = new HashMap<String, List>();
+    Scheduler scheduler = new Scheduler();
 
     public static void main(String[] args) {
         Prompt prompt = new Prompt();
@@ -29,9 +29,9 @@ public class Prompt {
             int cmd = Integer.parseInt(sc.nextLine());
             switch (cmd) {
                 case 1:
-                    addSchedule(); break;
+                    scheduler.add(); break;
                 case 2:
-                    searchSchedule(); break;
+                    scheduler.search(); break;
                 case 3:
                     printCalendar(); break;
                 default:
@@ -56,31 +56,5 @@ public class Prompt {
         calendar.print(year, month);
     }
 
-    private void searchSchedule() {
-        System.out.println("날짜를 입력하세요 ex) 2018-12-22");
-        String day = sc.nextLine();
-        if(scheduleMap.containsKey(day)) {
-            List<String> list = scheduleMap.get(day);
-            for(String schedule : list) {
-                System.out.println(schedule);
-            }
-        } else {
-            System.out.println("그날의 스케줄이 없습니다.");
-        }
-    }
 
-    private void addSchedule() {
-        System.out.println("날짜를 입력하세요 ex) 2018-12-22");
-        String day = sc.nextLine();
-        System.out.println("일정을 입력하세요 ex) 매시업 정기 모임");
-        String schedule = sc.nextLine();
-        if(scheduleMap.containsKey(day)) {
-            List<String> list = scheduleMap.get(day);
-            list.add(schedule);
-        } else {
-            List<String> list = new ArrayList<String>();
-            list.add(schedule);
-            scheduleMap.put(day, list);
-        }
-    }
 }

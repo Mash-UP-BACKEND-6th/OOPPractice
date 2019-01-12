@@ -1,5 +1,5 @@
 import calendar.*;
-import org.junit.*;
+import org.junit.Test;
 
 /**
  * Created by changmin on 2018. 12. 15..
