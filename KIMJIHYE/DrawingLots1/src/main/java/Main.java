@@ -1,24 +1,26 @@
-package firstVersion;
-
 public class Main {
     public static void main(String[] args) {
-        Lot lot = new Lot();
-        Prompt p = new Prompt(lot);
+        Lot lot;
+        Prompt p = new Prompt();
 
         while(true){
-            p.initPrompt(); // 제비 설정 입력받는 프롬프트
-            lot.prepare(); // 입력받은 설정을 기준으로 제비 준비
+            lot = p.initPrompt(); // 제비 설정 입력받는 프롬프트
+            p.showLots(lot,false);
+
             while(p.shufflePrompt()){
                 lot.shuffle(); // 제비 섞기
+                p.showLots(lot,false);
             }
 
-            if(p.isAgain)
+            if(p.isReset)
                 continue;
 
-            p.selectPrompt();
+            p.selectPrompt(lot);
 
-            if(p.isAgain)
+            if(p.exitPrompt())
                 continue;
+            else
+                break;
         }
 
     }

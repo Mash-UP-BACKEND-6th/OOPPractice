@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Dealer extends Thread implements Person {
-
+    boolean isEnd = false;
     int valueSum = 0;
     ArrayList<Card> hand = new ArrayList<>();
 
@@ -38,9 +38,10 @@ public class Dealer extends Thread implements Person {
                     System.out.println("# 한 장 더 뽑겠습니다");
                     selectCard();
                 }
+                isEnd = true;
                 notify();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("***딜러가 종료됩니다.");
             }
         }
 
