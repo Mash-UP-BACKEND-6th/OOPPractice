@@ -6,10 +6,15 @@ public class BitmapReader {
     FileInputStream fileInputStream;
 
     ByteOrder byteOrder = ByteOrder.LITTLE_ENDIAN;
+    int offset = 0;
 
-    public BitmapHeader readHeader(File file) throws IOException {
+    public void open(File file) throws FileNotFoundException {
+        this.fileInputStream = new FileInputStream(file);
+    }
+
+    public Bitmap read(File file) throws IOException {
        this.fileInputStream = new FileInputStream(file);
-       return new BitmapHeader(
+       BitmapHeader header = new BitmapHeader(
                readBfType(),
                readBfSize(),
                readReserved(),
@@ -27,18 +32,28 @@ public class BitmapReader {
                readCirUsed(),
                readCirImportant()
             );
+       fileInputStream.skip(84);
+       byte[] bytes = readBytes(header.getBfSize());
+       Bitmap bitmap = new Bitmap(header, bytes);
+       return bitmap;
     }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public byte[] getBody(int biSizeImage) throws IOException {
+        return readBytes(biSizeImage);
+    }
+
     public String readBfType() throws IOException {
-        byte[] bfType = new byte[2];
-        fileInputStream.read(bfType);
+        byte[] bfType = readBytes(2);
         return new String(bfType, StandardCharsets.UTF_8);
 
     }
 
     public int readBfSize() throws IOException {
-        byte[] bfSize = new byte[4];
-
-        fileInputStream.read(bfSize);
+        byte[] bfSize = readBytes(4);
         return readInt(bfSize);
     }
 
@@ -63,20 +78,17 @@ public class BitmapReader {
     }
 
     public int readReserved() throws IOException {
-        byte[] bfSize = new byte[2];
-        fileInputStream.read(bfSize);
+        byte[] bfSize = readBytes(2);
         return readInt(bfSize);
     }
 
     public int readBfOffbits() throws IOException {
-        byte[] bfOffBits = new byte[4];
-        fileInputStream.read(bfOffBits);
+        byte[] bfOffBits = readBytes(4);
         return readInt(bfOffBits);
     }
 
     public int readBiSize() throws IOException {
-        byte[] biSize = new byte[4];
-        fileInputStream.read(biSize);
+        byte[] biSize = readBytes(4);
         return readInt(biSize);
     }
 
@@ -88,6 +100,7 @@ public class BitmapReader {
     public byte[] readBytes(int size) throws IOException {
         byte[] bytes = new byte[size];
         fileInputStream.read(bytes);
+        offset += size;
         return bytes;
     }
 

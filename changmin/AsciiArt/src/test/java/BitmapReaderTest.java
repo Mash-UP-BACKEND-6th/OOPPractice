@@ -11,7 +11,7 @@ public class BitmapReaderTest {
     public void getBfType() throws IOException {
         File input = new File("/Users/user/Projects/mashup/OOP/changmin/AsciiArt/brown.bmp");
         bitmapReader = new BitmapReader();
-        bitmapReader.readHeader(input);
+        bitmapReader.open(input);
         Assert.assertEquals("BM", bitmapReader.readBfType());
     }
 
@@ -109,7 +109,7 @@ public class BitmapReaderTest {
     public void readBitmapHeader() throws IOException {
         File input = new File("/Users/user/Projects/mashup/OOP/changmin/AsciiArt/brown.bmp");
         BitmapReader bitmapReader = new BitmapReader();
-        BitmapHeader bitmapHeader = bitmapReader.readHeader(input);
+        BitmapHeader bitmapHeader = bitmapReader.read(input).getBitmapHeader();
         Assert.assertEquals("BM", bitmapHeader.getBfType());
         Assert.assertEquals(30138, bitmapHeader.getBfSize());
         Assert.assertEquals(0, bitmapHeader.getBfReserved1());
