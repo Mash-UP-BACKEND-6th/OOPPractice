@@ -9,16 +9,16 @@ public interface VendingMachine {
     void addStock(Product product);
 
     //현재 금액으로 구매가능한 상품 목록을 리턴하는 함수
-    List<Product> getProductList();
+    List<ProductInfo> getProductList();
 
     //특정 상품를 구매하는 함수
-    void buy(Product product);
+    void buy(ProductInfo productInfo);
 
     //잔액을 확인하는 함수
     int getInsertedMoney();
 
     //전체 상품 재고를 (사전으로 표현하는) 종류별로 리턴하는 함수
-    Map<Product, Integer> getStocks();
+    Map<ProductInfo, Integer> getStocks();
 
     //시작이후 구매 상품 이력을 배열로 리턴하는 함수
     List<Record>  getRecords();

@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class VendingMachineImpl implements VendingMachine{
     private int insertedMoney;
-    List<Product> products = new ArrayList<>();
-    Map<Product, Integer> stock = new HashMap<>();
+    List<ProductInfo> productInfos = new ArrayList<>();
+    Map<ProductInfo, Integer> stock = new HashMap<>();
 
     @Override
     public void insertMoney(int money) {
@@ -18,27 +18,28 @@ public class VendingMachineImpl implements VendingMachine{
 
     @Override
     public void addStock(Product product) {
-        if (stock.containsKey(product)) {
-            stock.put(product, stock.get(product) + 1);
+        ProductInfo productInfo = new ProductInfo(product);
+        if (stock.containsKey(productInfo)) {
+            stock.put(productInfo, stock.get(productInfo) + 1);
         } else {
-            stock.put(product, 1);
-            products.add(product);
+            stock.put(productInfo, 1);
+            productInfos.add(productInfo);
         }
     }
 
     @Override
-    public List<Product> getProductList() {
-        List<Product> possibles = new ArrayList<>();
-        for (Product product : products) {
-            if(product.getPrice() <= insertedMoney) {
-                possibles.add(product);
+    public List<ProductInfo> getProductList() {
+        List<ProductInfo> possibles = new ArrayList<>();
+        for (ProductInfo productInfo : productInfos) {
+            if(productInfo.getPrice() <= insertedMoney) {
+                possibles.add(productInfo);
             }
         }
         return possibles;
     }
 
     @Override
-    public void buy(Product product) {
+    public void buy(ProductInfo productInfo) {
 
     }
 
@@ -48,7 +49,7 @@ public class VendingMachineImpl implements VendingMachine{
     }
 
     @Override
-    public Map<Product, Integer> getStocks() {
+    public Map<ProductInfo, Integer> getStocks() {
         return null;
     }
 

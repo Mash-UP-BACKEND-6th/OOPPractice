@@ -32,8 +32,8 @@ public class VendingMachineTest {
     public void test_addProduct() {
         Product test = new Product("test","test",0,0, new Date(System.currentTimeMillis()));
         vendingMachine.addStock(test);
-        List<Product> productList = vendingMachine.getProductList();
-        Assert.assertEquals(test, productList.get(0));
+        List<ProductInfo> productInfoList = vendingMachine.getProductList();
+        Assert.assertEquals(new ProductInfo(test), productInfoList.get(0));
     }
 
     // 상품 구매하기
