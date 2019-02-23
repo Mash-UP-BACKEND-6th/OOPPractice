@@ -2,11 +2,39 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Product {
-    String name;
-    String brand;
-    int weight;
-    int price;
-    Date created;
+    private String name;
+    private String brand;
+    private int weight;
+    private int price;
+    private Date created;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public Product(String name, String brand, int weight, int price, Date created) {
+        this.name = name;
+        this.brand = brand;
+        this.weight = weight;
+        this.price = price;
+        this.created = created;
+    }
 
     @Override
     public boolean equals(Object o) {

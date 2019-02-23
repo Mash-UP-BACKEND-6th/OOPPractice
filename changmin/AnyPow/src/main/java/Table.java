@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class Tile {
     int[][] input;
-
+    private final static int 
     public Tile(int[][] input) {
         init(input);
     }
