@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Map;
 
 public interface VendingMachine {
     //자판기 금액을 원하는 금액만큼 올리는 함수
@@ -17,7 +18,7 @@ public interface VendingMachine {
     int getInsertedMoney();
 
     //전체 상품 재고를 (사전으로 표현하는) 종류별로 리턴하는 함수
-    List<Stock> getStocks();
+    Map<Product, Integer> getStocks();
 
     //시작이후 구매 상품 이력을 배열로 리턴하는 함수
     List<Record>  getRecords();
