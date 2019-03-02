@@ -1,5 +1,6 @@
 import java.util.Objects;
 
+// 상품의 정보만 나타내는 클래스
 public class ProductInfo {
     private String name;
     private String brand;
@@ -23,10 +24,10 @@ public class ProductInfo {
     }
 
     public ProductInfo(Product product) {
-        this.name = getName();
-        this.brand = getBrand();
-        this.weight = getWeight();
-        this.price = getPrice();
+        this(product.getName(),
+            product.getBrand(),
+            product.getWeight(),
+            product.getPrice());
     }
 
     public ProductInfo(String name, String brand, int weight, int price) {

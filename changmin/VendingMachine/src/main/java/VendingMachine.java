@@ -12,7 +12,7 @@ public interface VendingMachine {
     List<ProductInfo> getProductList();
 
     //특정 상품를 구매하는 함수
-    void buy(ProductInfo productInfo);
+    Product buy(ProductInfo productInfo);
 
     //잔액을 확인하는 함수
     int getInsertedMoney();
