@@ -21,5 +21,5 @@ public interface VendingMachine {
     Map<ProductInfo, Integer> getStocks();
 
     //시작이후 구매 상품 이력을 배열로 리턴하는 함수
-    List<Record>  getRecords();
+    List<Product>  getRecords();
 }

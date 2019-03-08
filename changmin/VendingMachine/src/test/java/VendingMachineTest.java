@@ -65,4 +65,16 @@ public class VendingMachineTest {
         Assert.assertEquals(new Integer(1), stockInfo.get(new ProductInfo(p2_1)));
     }
 
+    @Test
+    public void test_getRecords() {
+        Date createDate = new Date(System.currentTimeMillis());
+        Product test = new Product("test","test",0,0, createDate);
+        vendingMachine.addStock(test);
+        Product buy = vendingMachine.buy(new ProductInfo(test));
+        List<Product> records = vendingMachine.getRecords();
+        Product record = records.get(0);
+        Assert.assertEquals(test, record);
+
+    }
+
 }

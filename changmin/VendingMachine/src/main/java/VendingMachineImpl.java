@@ -8,8 +8,11 @@ public class VendingMachineImpl implements VendingMachine{
     //빨리 찾는 것만 중요
     Map<ProductInfo, Integer> stockInfo = new HashMap<>();
 
-    //삽임 삭제가 빈번
+    //삽입 삭제가 빈번할 수 있다.
     List<Product> stocks = new LinkedList<>();
+
+    //삽입만 한다.
+    List<Product> records = new ArrayList<>();
 
     @Override
     public void insertMoney(int money) {
@@ -48,7 +51,9 @@ public class VendingMachineImpl implements VendingMachine{
             int count = stockInfo.get(productInfo);
             if(count > 0) {
                 stockInfo.put(productInfo, stockInfo.get(productInfo) - 1);
-                return stocks.get(0);
+                Product product = stocks.get(0);
+                records.add(product);
+                return product;
             }
         }
         throw new IllegalArgumentException("상품이 존재하지 않거나 재고가 없습니다.");
@@ -65,7 +70,7 @@ public class VendingMachineImpl implements VendingMachine{
     }
 
     @Override
-    public List<Record> getRecords() {
-        return null;
+    public List<Product> getRecords() {
+        return records;
     }
 }
