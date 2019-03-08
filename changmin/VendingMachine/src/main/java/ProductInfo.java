@@ -52,4 +52,12 @@ public class ProductInfo {
     public int hashCode() {
         return Objects.hash(name, brand, weight, price);
     }
+
+    @Override
+    public String toString() {
+        return "name='" + name + '\'' +
+                ", brand='" + brand + '\'' +
+                ", weight=" + weight +
+                ", price=" + price;
+    }
 }
