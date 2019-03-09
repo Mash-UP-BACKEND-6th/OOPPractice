@@ -6,23 +6,19 @@ import java.util.List;
 public class Report {
     List<String> reports;
 
-    public Report(){
+    public Report() {
         this.reports = new ArrayList<String>();
     }
 
-    /*public void itemIn(Item item, int amount){
-        reports.add("구입 | "+item.name+" "+amount+"개");
-    }*/
-
-    public void write(String item){
+    public void write(String item) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String log = (reports.size()+1)+". "+item+" 1개 "+df.format(System.currentTimeMillis());
+        String log = (reports.size() + 1) + ". " + item + " 1개 " + df.format(System.currentTimeMillis());
         reports.add(log);
     }
 
-    public void print(){
+    public void print() {
         System.out.println("======  사용자의 구매 이력  =======");
-        for(String report : reports){
+        for (String report : reports) {
             System.out.println(report);
         }
         System.out.println("=================================");

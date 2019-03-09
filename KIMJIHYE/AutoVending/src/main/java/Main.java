@@ -8,10 +8,10 @@ public class Main {
         Menu menu = null;
 
         System.out.println("   자팡기자판기  ");
-        while(true){
+        while (true) {
             System.out.println("1. 상품 구매(사용자 메뉴)\n2. 상품 관리(관리자 메뉴)");
             System.out.print("메뉴 번호를 입력하세요 :) ");
-            switch(scanner.nextInt()){
+            switch (scanner.nextInt()) {
                 case 1:
                     menu = new UserMenu(machine);
                     menu.showItems();
@@ -26,10 +26,7 @@ public class Main {
             }
 
 
-
-
         }
-
 
 
     }
