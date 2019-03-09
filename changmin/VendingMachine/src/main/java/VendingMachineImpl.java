@@ -16,8 +16,8 @@ public class VendingMachineImpl implements VendingMachine{
 
     @Override
     public void insertMoney(int money) {
-        if(money < 0) {
-            throw new IllegalArgumentException("No minus money! " + money);
+        if (money < 0) {
+            throw new IllegalArgumentException("넣을 수 없는 액수 입니다." + money);
         }
         this.insertedMoney += money;
     }
@@ -54,7 +54,7 @@ public class VendingMachineImpl implements VendingMachine{
 
     @Override
     public Product buy(ProductInfo productInfo) {
-        if(insertedMoney < productInfo.getPrice()) {
+        if (insertedMoney < productInfo.getPrice()) {
             throw new IllegalArgumentException("돈이 부족합니다.");
         }
 
