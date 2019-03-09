@@ -79,6 +79,17 @@ public class VendingMachineTest {
         vendingMachine.addStock(test);
         Product result = vendingMachine.buy(new ProductInfo(test));
         Assert.assertEquals(test, result);
+
+        //돈이 모자란 경우
+        Product test2 = new Product("test2","test",0,1, new Date(System.currentTimeMillis()));
+        vendingMachine.addStock(test2);
+        try {
+            result = vendingMachine.buy(new ProductInfo(test2));
+            System.out.println(result);
+        } catch (Exception e) {
+            Assert.assertEquals(e.getMessage(), "돈이 부족합니다.");
+        }
+
     }
 
     // 전체 상품 재고 확인

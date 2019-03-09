@@ -55,7 +55,7 @@ public class ProductInfo {
 
     @Override
     public String toString() {
-        return "name='" + name + '\'' +
+        return "name'" + name + '\'' +
                 ", brand='" + brand + '\'' +
                 ", weight=" + weight +
                 ", price=" + price;
