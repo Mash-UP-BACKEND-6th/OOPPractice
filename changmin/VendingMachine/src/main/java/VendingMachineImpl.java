@@ -61,6 +61,7 @@ public class VendingMachineImpl implements VendingMachine{
         if (stockInfo.containsKey(productInfo) && stockInfo.get(productInfo) > 0) {
             int count = stockInfo.get(productInfo);
             if(count > 0) {
+                insertedMoney -= productInfo.getPrice(); 
                 stockInfo.put(productInfo, stockInfo.get(productInfo) - 1);
                 Product product = stocks.get(productInfo).get(0);
                 records.add(product);
