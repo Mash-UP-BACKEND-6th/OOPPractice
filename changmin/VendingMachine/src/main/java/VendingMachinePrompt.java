@@ -27,8 +27,26 @@ public class VendingMachinePrompt {
     }
 
     public static void main(String[] args) {
-        if(args.length > 1) {
+        if(args.length == 0) {
+            new VendingMachineServer().start(new VendingMachineImpl(), new VendingMachineManager(){
+                @Override
+                public void init(VendingMachine vendingMachine) {
+                    for (int i = 0; i < 10; ++i) {
+                        Product product = new Product("백산수", "농심", 1, 200, new Date(System.currentTimeMillis()));
+                        vendingMachine.addStock(product);
+                    }
 
+                    for( int i = 0; i < 5; ++i) {
+                        Product product = new Product("콜라", "코카콜라", 1, 200, new Date(System.currentTimeMillis()));
+                        vendingMachine.addStock(product);
+                    }
+
+                    for (int i = 0; i < 5; ++i) {
+                        Product product = new Product("하늘보리", "웅진", 1, 500, new Date(System.currentTimeMillis()));
+                        vendingMachine.addStock(product);
+                    }
+                }
+            });
         } else {
             new VendingMachinePrompt(System.in).start(new VendingMachineImpl(), new VendingMachineManager(){
                 @Override
@@ -78,8 +96,8 @@ public class VendingMachinePrompt {
                     default:
                         System.out.println("불가능합니다.");
                 }
-            } catch (Exception e){
-                System.out.println(e.toString());
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
                 scanner.reset();
             }
         } while(commend != Commend.EXIT);

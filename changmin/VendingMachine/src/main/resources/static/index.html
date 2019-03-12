@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>자판기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <div>금액 넣기</div>
+    <div id="insertMoney"></div>
+    <input type="text" id="money">
+    <input type="button" value="넣기" onclick="insertMoney()"/>
+    <h3>메뉴</h3>
+    <div id="menu">
+
+    </div>
+    <h3>구매 내역</h3>
+    <div id="record"></div>
+    <script>
+        var getInsertMoney = function(money) {
+            var insert = document.getElementById("insertMoney");
+            insert.innerText = "현재 :" + money;
+        }
+        var insertMoney = function () {
+            var money = document.getElementById("money").value;
+            var url = "/insertMoney?money=" + money;
+            $.ajax({
+                url: url,
+                success: function (result) {
+                    alert("돈을 넣었습니다.");
+                    getInsertMoney(result);
+                    getProducts();
+                },
+                error: function (result) {
+                    alert("통신 실패");
+                }
+            });
+        };
+        var getTD = function (value) {
+            var td = document.createElement("td");
+            td.innerText = value;
+            return td;
+        };
+        var setRecord = function (records) {
+            var recordDoc = document.getElementById("record");
+            var jsonArray = JSON.parse(records);
+            var table = document.createElement("table");
+            jsonArray.forEach(function (value) {
+                var tr = document.createElement("tr");
+                tr.appendChild(getTD(value.name));
+                tr.appendChild(getTD(value.brand));
+                tr.appendChild(getTD(value.weight));
+                tr.appendChild(getTD(value.created));
+                table.appendChild(tr);
+            });
+            recordDoc.innerHTML="";
+            recordDoc.appendChild(table);
+        };
+        var getRecord = function () {
+            var url = "/record";
+            $.ajax({
+                url: url,
+                success: function (result) {
+                    setRecord(result);
+                },
+                error: function (result) {
+                    alert("통신 실패")
+                }
+            });
+        };
+        var buy = function (value) {
+            var url = "/selectMenu";
+            $.ajax({
+                url:url,
+                method:"post",
+                data: JSON.stringify(value),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success:function (result) {
+                    alert("구매 완료");
+                    getInsertMoney(result);
+                    getRecord();
+                }
+            });
+        };
+        var getProducts = function () {
+            var url = "/menu";
+            $.ajax({
+                url:url,
+                success: function (obj) {
+                    var menu = document.getElementById("menu");
+                    menu.innerHTML = "";
+                    var table = document.createElement("table");
+                    obj.forEach(function (value, i){
+                        var tr = document.createElement("tr");
+
+                        tr.appendChild(getTD(value.name));
+                        tr.appendChild(getTD(value.brand));
+                        tr.appendChild(getTD(value.price));
+                        tr.appendChild(getTD(value.weight));
+
+                        var buttonCol = document.createElement("td");
+                        var button = document.createElement("input");
+                        button.type = "button";
+                        button.value = "구매";
+
+                        button.addEventListener("click", function(){
+                            console.log(value);
+                            buy(value);
+                        });
+                        buttonCol.appendChild(button);
+                        tr.appendChild(buttonCol);
+
+                        table.appendChild(tr);
+                    });
+
+                    menu.appendChild(table);
+                },
+                error: function () {
+                    alert("통신 실패")
+                }
+            });
+        }
+    </script>
+</body>
+</html>
