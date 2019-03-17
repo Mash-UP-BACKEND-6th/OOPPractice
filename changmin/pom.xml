@@ -16,6 +16,8 @@
         <module>BaseBall</module>
         <module>Lotto</module>
         <module>AsciiArt</module>
+        <module>AnyPow</module>
+        <module>VendingMachine</module>
     </modules>
     <build>
         <plugins>
